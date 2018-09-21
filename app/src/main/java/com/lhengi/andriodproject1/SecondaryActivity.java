@@ -36,7 +36,7 @@ public class SecondaryActivity extends AppCompatActivity {
         int counter = 0;
         for (String s : nameExploded) {
             if (!s.equals("") && !s.matches("[a-zA-Z]+")) {
-                System.out.println("#########This is not a good name");
+                //System.out.println("#########This is not a good name");
                 resultIntent.putExtra("name",textField.getText().toString());
                 setResult(RESULT_CANCELED,resultIntent);
                 return false;
@@ -53,7 +53,7 @@ public class SecondaryActivity extends AppCompatActivity {
             return false;
         }
 
-        System.out.println("$$$$$$$$$$$This is the name: " + name);
+        //System.out.println("$$$$$$$$$$$This is the name: " + name);
         resultIntent.putExtra("name",name);
         setResult(RESULT_OK,resultIntent);
         return true;
@@ -64,7 +64,7 @@ public class SecondaryActivity extends AppCompatActivity {
     public TextView.OnEditorActionListener textFieldListener = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-            System.out.println("ON editor action Listener is triggered!!!!!!!!!");
+            //System.out.println("ON editor action Listener is triggered!!!!!!!!!");
             boolean legal = isLegal();
             finish();
             return legal;

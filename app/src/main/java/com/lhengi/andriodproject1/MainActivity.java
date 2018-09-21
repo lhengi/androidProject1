@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         button1.setOnClickListener(button1Listener);
         button2.setOnClickListener(button2Listener);
-        name = "*";
+        name = "";
+        resultCode = RESULT_CANCELED;
 
     }
 
@@ -45,14 +46,14 @@ public class MainActivity extends AppCompatActivity {
         this.resultCode = resultCode;
         if (resultCode == RESULT_CANCELED)
         {
-            System.out.println("Bad name");
+            //System.out.println("Bad name");
             name = result.getStringExtra("name");;
             return;
         }
 
 
         name = result.getStringExtra("name");
-        System.out.println("&&&&&&&&& name:"+name);
+        //System.out.println("&&&&&&&&& name:"+name);
 
 
     }
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     public View.OnClickListener button1Listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            textView.setText("Button 1 clicked!!!");
+            //textView.setText("Button 1 clicked!!!");
             launchSecondActivity();
 
         }
@@ -69,10 +70,10 @@ public class MainActivity extends AppCompatActivity {
     public View.OnClickListener button2Listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            textView.setText("Button 2 clicked!");
+            //textView.setText("Button 2 clicked!");
             if(resultCode == RESULT_CANCELED)
             {
-                System.out.println("#### Invalid name");
+                //System.out.println("#### Invalid name");
 
                 Toast.makeText(getApplicationContext(),"Your name "+name+" is illegal!!!",Toast.LENGTH_LONG).show();
             }
