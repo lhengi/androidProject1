@@ -28,11 +28,15 @@ public class MainActivity extends AppCompatActivity {
 
         button1.setOnClickListener(button1Listener);
         button2.setOnClickListener(button2Listener);
+
+        // initialize name and result code
+        // prevent the app crashes when user click second button without enter a name first
         name = "";
         resultCode = RESULT_CANCELED;
 
     }
 
+    // launch second activity
     public void launchSecondActivity()
     {
 
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent,1);
     }
 
+    // capture data returned from second activity
     @Override
     public  void onActivityResult(int requestCode, int resultCode, Intent result)
     {
@@ -58,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // when first button clicked launch second activity
     public View.OnClickListener button1Listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -67,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+
+    // when second button clicked, check the result code,
+        // if result canceled then Toast
+        // else call the edit contact activity and pass the name to contact app
     public View.OnClickListener button2Listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -79,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else
             {
+                // result code is good, start contact app and pass the name
                 Intent intent = new Intent(ContactsContract.Intents.Insert.ACTION);
                 intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
                 intent.putExtra(ContactsContract.Intents.Insert.NAME,name);

@@ -27,6 +27,8 @@ public class SecondaryActivity extends AppCompatActivity {
     }
 
     public boolean isLegal() {
+        // check if the name entered was a legal name
+
         String[] nameExploded = textField.getText().toString().split(" ");
 
         String name = "";
@@ -34,18 +36,24 @@ public class SecondaryActivity extends AppCompatActivity {
         Intent resultIntent = new Intent();
 
         int counter = 0;
+        // match the name entered with regular expression
         for (String s : nameExploded) {
+
+            // if fail set the result code then return false
             if (!s.equals("") && !s.matches("[a-zA-Z]+")) {
                 //System.out.println("#########This is not a good name");
                 resultIntent.putExtra("name",textField.getText().toString());
                 setResult(RESULT_CANCELED,resultIntent);
                 return false;
             } else if (!s.equals("") && s.matches("[a-zA-Z]+")) {
+                //
                 name += s + " ";
                 counter++;
             }
         }
 
+
+        // if there's only one string , set status code and result
         if (counter < 2)
         {
             resultIntent.putExtra("name", name);
@@ -61,6 +69,7 @@ public class SecondaryActivity extends AppCompatActivity {
 
     }
 
+    // textField Listener, triggered on enter, after check the name
     public TextView.OnEditorActionListener textFieldListener = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -73,6 +82,9 @@ public class SecondaryActivity extends AppCompatActivity {
         }
     };
 
+    // if user click back button the the main activity will crahs beacus of expecting result
+    // this will prevent that and set the status code to result cancel and return an empty string
+    // act like if user canceled the enter
     @Override
     public void onBackPressed()
     {
